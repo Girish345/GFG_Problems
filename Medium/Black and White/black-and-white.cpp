@@ -8,6 +8,7 @@ long long numOfWays(int n, int m);
 int main() {
     // code
     int T;
+    
     cin >> T;
     while (T--) {
         int n, m;
