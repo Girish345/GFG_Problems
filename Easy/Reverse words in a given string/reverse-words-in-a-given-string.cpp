@@ -18,8 +18,8 @@ class Solution
                 reverse(S.begin()+j,S.begin()+i);
                 j=i+1;
             }
+            
         }
-        
         reverse(S.begin()+j,S.end());
         return S;
     } 
