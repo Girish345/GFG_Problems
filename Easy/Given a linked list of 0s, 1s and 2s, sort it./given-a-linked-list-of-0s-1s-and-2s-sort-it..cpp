@@ -36,27 +36,32 @@ class Solution
     Node* segregate(Node *head) {
         
         // Add code here
-        if(head==NULL)
+        
+           int zero=0;
+        int one=0;
+        int two=0;
+        Node* temp=head;
+        
+        while(temp!=NULL){
+            if(temp->data==0) zero++;
+            else if(temp->data==1) one++;
+            else two++;
+            temp=temp->next;
+        }
+        temp=head;  //phirse temp ko laake head pe laga diya
+        while(zero--){
+            temp->data=0;
+            temp=temp->next;
+        }
+        while(one--){
+            temp->data=1;
+            temp=temp->next;
+        }
+        while(two--){
+            temp->data=2;
+            temp=temp->next;
+        }
         return head;
-      Node *temp=head;
-      vector<int>v;
-      
-      while(temp!=NULL){
-          v.push_back(temp->data);
-          temp=temp->next;
-          
-      }
-      sort(v.begin(),v.end());
-      
-      temp=head;
-      int i=0;
-      while(temp!=NULL){
-          temp->data=v[i];
-          i++;
-          temp=temp->next;
-      }
-      return head;
-      
         
     }
 };
