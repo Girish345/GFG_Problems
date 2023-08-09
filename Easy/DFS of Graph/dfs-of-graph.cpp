@@ -3,31 +3,32 @@
 using namespace std;
 
 // } Driver Code Ends
-
 class Solution {
   public:
-  unordered_map<int,bool>visited;
-  vector<int>ans;
-  
-  void dfs(int node,vector<int>adj[]){
-      ans.push_back(node);
-      visited[node]=true;
-      
-      // traversee all children nodes
-      for(auto children:adj[node]){
-          if(!visited[children]){
-              dfs(children,adj);
-          }
-      }
-  }
     // Function to return a list containing the DFS traversal of the graph.
+    
+    void dfs(vector<int> adj[],int start,int vis[],vector<int>&dfsa){
+        vis[start]=1;
+        dfsa.push_back(start);
+        
+        for(auto it:adj[start]){
+            if(!vis[it]){
+                dfs(adj,it,vis,dfsa);
+            }
+        }
+        
+    }
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         // Code here
-        dfs(0,adj);
-        return ans;
+        
+        int vis[V]={0};
+        int start=0;
+        vector<int>dfsa;
+        
+        dfs(adj,start,vis,dfsa);
+        return dfsa;
     }
 };
- 
 
 //{ Driver Code Starts.
 int main() {
