@@ -4,28 +4,22 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-
-bool isCheck(int start,int V,vector<int>&vis,vector<int>adj[]){
-    vis[start]=0;
-    queue<int>q;
-    q.push(start);
     
-    while(!q.empty()){
-        int node=q.front();
-        q.pop();
+    bool dfs(int start,int col,int V,vector<int>&vis,vector<int>adj[]){
+        vis[start]=col;
         
-        for(auto it:adj[node]){
+        for(auto it:adj[start]){
             if(vis[it]==-1){
-                vis[it]=!vis[node];
-                q.push(it);
+                if(dfs(it,!col,V,vis,adj)==false){
+                    return false;
+                }
             }
-            else if(vis[it]==vis[node]){
+            else if(vis[it]==vis[start]){
                 return false;
             }
         }
+        return true;
     }
-    return true;
-}
     
 public:
 	bool isBipartite(int V, vector<int>adj[]){
@@ -34,14 +28,12 @@ public:
 	    
 	    for(int i=0;i<V;i++){
 	        if(vis[i]==-1){
-	            if(isCheck(i,V,vis,adj)==false){
+	            if(dfs(i,0,V,vis,adj)==false){
 	                return false;
 	            }
 	        }
 	    }
 	    return true;
-	    
-	    
 	    
 	}
 
